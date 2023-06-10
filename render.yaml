@@ -1,3 +1,8 @@
+databases:
+  - name: mysite
+    databaseName: mysite
+    user: mysite
+
 services:
     - type: web
       plan: free
@@ -7,7 +12,11 @@ services:
       startCommand: "gunicorn mysite.wsgi:application"
       autoDeploy: false
       envVars:
-          - key: SECRET_KEY
-            generateValue: true
-          - key: WEB_CONCURRENCY
-            value: 4
+        - key: DATABASE_URL
+        fromDatabase:
+          name: mysite
+          property: connectionString
+        - key: SECRET_KEY
+          generateValue: true
+        - key: WEB_CONCURRENCY
+          value: 4
