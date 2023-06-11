@@ -49,6 +49,7 @@ def gpt3_completion(transcript, engine='gpt-3.5-turbo', temp=0.0, top_p=1.0, tok
             sleep(1)
 
 def index(request):
+    response = ''
     if request.method == "POST":
         form = YouTubeForm(request.POST)
         if form.is_valid():
@@ -56,12 +57,9 @@ def index(request):
             print(url)
             id = extract_video_id(url)
             print(id)
-            transcript = ''
-            response = ''
             transcript = YouTubeTranscriptApi.get_transcript(id)
             print(transcript)
             response = gpt3_completion(transcript)
-            #print(response)
     else:
         form = YouTubeForm()
 
