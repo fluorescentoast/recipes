@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Hello Django on Render!</title>
+    <title>Recipes Capture!</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -16,15 +16,26 @@
 
 <body>
     <header class="container mt-4 mb-4">
+        <h1>Capture Recipes From Any YouTube Video</h1>
     </header>
     <main class="container">
-        <div class="row text-center justify-content-center">
-            <div class="col">
-                <h1 class="display-4">Hello World!</h1>
-                <p>Learn more at <a
-                        href="https://render.com/docs/deploy-django">https://render.com/docs/deploy-django</a>.
-            </div>
-        </div>
+        <h2>
+            How to use
+        </h2>
+        <p>
+            Copy the URL from any Cooking video on YouTube and paste into the input field below. Capturing the recipe
+            can take up
+            to 30 seconds, so please be patient.
+        </p>
+        <p>
+            For example you can use this video from Jamie Oliver: https://youtu.be/bcokNIfoc38
+        </p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+        {{response | safe}}
     </main>
 </body>
 
